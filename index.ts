@@ -37,8 +37,6 @@ async function send(title: string, contents: Array<string>) {
 		console.log('content', content)
 		console.log()
 
-		if (test) return
-
 		const soldier = new thecamp.Soldier(
 			name,
 			birth,
@@ -52,6 +50,12 @@ async function send(title: string, contents: Array<string>) {
 		const cookies = await thecamp.login(id, password)
 		await thecamp.addSoldier(cookies, soldier)
 		const [trainee] = await thecamp.fetchSoldiers(cookies, soldier)
+
+		console.log('name: ' + trainee.getName())
+		console.log('birth: ' + trainee.getBirth())
+		console.log('enterDate: ' + trainee.getEnterDate())
+
+		if (test) return
 
 		const message = new thecamp.Message(
 			newTitle,
