@@ -33,6 +33,19 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}-
             ${{ runner.OS }}-build-
+            
+      - name: Make .env
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_USER_ID: ${{ secrets.USER_ID }}
+          envkey_USER_PWD: ${{ secrets.USER_PWD }}
+          envkey_TRAINEE_NAME: ${{ secrets.TRAINEE_NAME }}
+          envkey_TRAINEE_BIRTH: ${{ secrets.TRAINEE_BIRTH }}
+          envkey_ENTER_DATE: ${{ secrets.ENTER_DATE }}
+          envkey_CLASS_NAME: ${{ secrets.CLASS_NAME }}
+          envkey_GROUP_NAME: ${{ secrets.GROUP_NAME }}
+          envkey_UNIT_NAME: ${{ secrets.UNIT_NAME }}
+          file_name: .env
 
       - name: Npm install
         run: |
