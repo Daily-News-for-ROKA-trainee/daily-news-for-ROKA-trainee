@@ -45,6 +45,7 @@ jobs:
           envkey_CLASS_NAME: ${{ secrets.CLASS_NAME }}
           envkey_GROUP_NAME: ${{ secrets.GROUP_NAME }}
           envkey_UNIT_NAME: ${{ secrets.UNIT_NAME }}
+          envkey_TEST: ${{ secrets.TEST }}
           file_name: .env
 
       - name: Npm install
