@@ -74,7 +74,7 @@ function getDate() {
 
 ;(async () => {
 	//await send(`${getDate()} 다음 뉴스`, await daumNews.getNews());
-	await send(`${getDate()} 구글 뉴스`, await googleNews.getNews())
+	//await send(`${getDate()} 구글 뉴스`, await googleNews.getNews())
 	//await send(`${getDate()} NEWNEEK 뉴스`, await newneekNews.getNews());
 	await send(`${getDate()} SBS 뉴스`, await sbsNews.getNews())
 })()
