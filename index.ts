@@ -23,6 +23,10 @@ const groupName = process.env.GROUP_NAME as thecamp.SoldierGroupName
 const unitName = process.env.UNIT_NAME as thecamp.SoldierUnitName
 const test = process.env.TEST == 'true'
 
+function delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
 async function send(title: string, contents: Array<string>) {
 	await contents.forEach(async (content, i) => {
 		const newTitle = ((title) => {
@@ -47,8 +51,18 @@ async function send(title: string, contents: Array<string>) {
 			thecamp.SoldierRelationship.FRIEND
 		)
 
+        
 		const cookies = await thecamp.login(id, password)
-		await thecamp.addSoldier(cookies, soldier)
+        for(let i=0; i<5; i++){
+            if(await thecamp.addSoldier(cookies, soldier) == true){
+                break;
+            }else{
+                (async()=>{
+                    console.log("thecamp.addSoldier failed %d times... retrying", i);
+                    await delay(5000);
+                })
+            }
+        }
 		const [trainee] = await thecamp.fetchSoldiers(cookies, soldier)
 
 		console.log('name: ' + trainee.getName())
